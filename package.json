@@ -2,7 +2,7 @@
   "name": "MarvelSchools",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "server/index.js",
   "dependencies": {
     "axios": "^0.18.0",
     "babel-core": "^6.26.3",
@@ -11,6 +11,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "express": "^4.16.3",
+    "morgan": "^1.9.1",
     "pg": "^7.4.3",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
@@ -28,7 +29,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "./node_modules/webpack/bin/webpack.js",
-    "start:dev": "npm run webpack -- --watch --mode=development & DATABASE_URL=postgres://localhost/my_db nodemon server.js --ignore src/ --ignore dist"
+    "start:dev": "npm run webpack -- --watch --mode=development & DATABASE_URL=postgres://localhost/my_db nodemon server/index.js --ignore src/ --ignore dist"
   },
   "keywords": [],
   "author": "",

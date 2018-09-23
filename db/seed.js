@@ -5,12 +5,12 @@ const studentData = [
     gpa: 3.1
   },
   {
-    firstName: 'Tony ',
+    firstName: 'Tony',
     lastName: 'Stark',
     gpa: 5
   },
   {
-    firstName: 'Hulk ',
+    firstName: 'Hulk',
     lastName: 'Smash',
     gpa: 2.0
   },
@@ -20,7 +20,7 @@ const studentData = [
     gpa: 3.98
   },
   {
-    firstName: 'Captian ',
+    firstName: 'Captian',
     lastName: 'America',
     gpa: 3.6
   }
@@ -29,17 +29,17 @@ const studentData = [
 const schoolData = [
   {
     name:'Bronx School',
-    Address: '112 Bronx avenue',
+    address: '112 Bronx avenue',
     moto: 'Make the most of now.'
   },
   {
     name:'Brooklyn School',
-    Address: '245 Brooklyn avenue',
+    address: '245 Brooklyn avenue',
     moto: 'Success. Its a mind game.'
   },
   {
     name:'Manhattan School',
-    Address: '80 Manhattan avenue',
+    address: '80 Manhattan avenue',
     moto: 'Impossible is nothing.'
   }
 ]
