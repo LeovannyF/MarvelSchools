@@ -31,14 +31,23 @@ const School = db.define('school', {
 const syncSeed = async () => {
   await db.sync({force:true})
 
-  const [thor, tony, black, captain] = await Promise.all(studentData.map(student => {
+  const [thor, tony, hulk, black, captain] = await Promise.all(studentData.map(student => {
     return Student.create(student);
   }));
   const [bronx, brooklyn, manhattan] = await Promise.all(schoolData.map(school => {
     return School.create(school);
   }));
+
+  thor.setSchool(bronx)
+  tony.setSchool(manhattan)
+  black.setSchool(brooklyn)
+  captain.setSchool(brooklyn)
+  hulk.setSchool(bronx)
+
 }
 
+Student.belongsTo(School)
+School.hasMany(Student)
 
 module.exports = {
   Student,

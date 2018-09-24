@@ -5,13 +5,21 @@ const router = express.Router();
 //getting all schools and students
 
 router.get('/schools', (req, res, next) => {
-  School.findAll()
+  School.findAll({
+    include:[{
+      model: Student
+    }]
+  })
   .then(schools => res.send(schools))
   .catch(next);
 });
 
 router.get('/students', (req, res, next) => {
-  Student.findAll()
+  Student.findAll({
+    include:[{
+      model: School
+    }]
+  })
   .then(students => res.send(students))
   .catch(next);
 });
