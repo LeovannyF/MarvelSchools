@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import store, {loadSchools, loadStudents} from '../store';
-import {Provider} from 'react-redux';
+import {Provider, connect} from 'react-redux';
 import SchoolList from './SchoolList';
 import StudentList from './StudentList';
 import {HashRouter, Route, Link} from 'react-router-dom';
@@ -11,26 +11,34 @@ class App extends Component {
     store.dispatch(loadSchools());
     store.dispatch(loadStudents());
   }
+
   render() {
+    console.log('Hello', this.props.schoolList.length)
     return (
-    <Provider store={store}>
       <HashRouter>
           <div id='container'>
             <div id='nav-bar'>
-              <button> <Link to='/schools'> Schools </Link> </button>
-              <button> <Link to='/students'> Students </Link> </button>
+              <button> <Link to ='/'> Home </Link></button>
+              <button> <Link to='/schools'> Schools {this.props.schoolList.length} </Link> </button>
+              <button> <Link to='/students'> Students {this.props.studentList.length} </Link> </button>
             </div>
 
             <div id='nav-helper'>
               <Route path='/schools' component = {SchoolList}/>
               <Route path='/students' component = {StudentList}/>
+              <Route exact path = '/'/>
             </div>
           </div>
-
       </HashRouter>
-    </Provider>
     )
   }
 }
 
-export default App
+const mapStateToProps = ({schoolList, studentList}) => {
+  return{
+    schoolList,
+    studentList
+  }
+}
+
+export default connect(mapStateToProps)(App)

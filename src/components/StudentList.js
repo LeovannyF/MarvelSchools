@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 
 
 const StudentList = ({studentList}) => {
-  console.log('I AM HERE', studentList)
   return (
     <ul>
       {
