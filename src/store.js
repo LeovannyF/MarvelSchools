@@ -6,34 +6,60 @@ import axios from 'axios';
 //action types
 
 const LOAD_SCHOOLS = "LOAD_SCHOOLS";
+const LOAD_STUDENTS = "LOAD_STUDENTS";
 
 //action creators
 
 const _loadSchools = (schoolList) => {
   return {
     schoolList,
-    type LOAD_SCHOOLS
+    type: LOAD_SCHOOLS
+  }
+}
+
+const _loadStudents = (studentList) => {
+  return {
+    studentList,
+    type: LOAD_STUDENTS
   }
 }
 
 
 //thunk creators
 const loadSchools = () => {
-  axios.get('api/schools')
-  .then(response => response.date)
+  return(dispatch) => {
+    axios.get('api/schools')
+  .then(response => response.data)
   .then(schools => dispatch(_loadSchools(schools)));
+  }
+}
+
+const loadStudents = () => {
+  return(dispatch) => {
+    axios.get('api/students')
+    .then(response => response.data)
+    .then(students => dispatch(_loadStudents(students)));
+  }
 }
 
 
 //store reducers
 
-const SchoolReducer = (state = [], action) {
-  switch(action.typ) {
+const SchoolReducer = (state = [], action) => {
+  switch(action.type) {
     case LOAD_SCHOOLS:
     state = action.schoolList
     break;
   }
+  return state
+}
 
+const StudentReducer = (state = [], action) => {
+  switch(action.type) {
+    case LOAD_STUDENTS:
+    state = action.studentList
+    break;
+  }
   return state
 }
 
@@ -41,7 +67,8 @@ const SchoolReducer = (state = [], action) {
 //combined reducers
 
 const reducer = combineReducers({
-  schoolList: SchoolReducer
+  schoolList: SchoolReducer,
+  studentList: StudentReducer
 })
 
 
@@ -50,5 +77,4 @@ const reducer = combineReducers({
 const store = createStore(reducer, applyMiddleware(logger, thunk));
 
 export default store;
-export {loadSchools}
-s
+export {loadSchools, loadStudents}

@@ -4,7 +4,11 @@ import {connect} from 'react-redux';
 
 const SchoolList = ({schoolList}) => {
   return (
-
+      <ul>
+        {
+          schoolList.map(school => <li key={school.id}> {school.name} ({school.students.length}) </li>)
+        }
+      </ul>
   )
 }
 
@@ -14,4 +18,4 @@ const mapStateToProps = ({schoolList}) => {
   }
 }
 
-export default 
+export default connect(mapStateToProps)(SchoolList);
