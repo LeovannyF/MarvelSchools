@@ -1,15 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import SingleSchool from './SingleSchool';
 
 
 const SchoolList = ({schoolList}) => {
   return (
       <ul>
         {
-          schoolList.map(school => <li key={school.id}> {school.name} ({school.students.length}) </li>)
+          schoolList.map(school => <SingleSchool key={school.id} school={school}/>)
         }
       </ul>
-  )
+  );
 }
 
 const mapStateToProps = ({schoolList}) => {

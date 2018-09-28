@@ -2,11 +2,12 @@ import React from 'react';
 import {connect} from 'react-redux'
 
 
+
 const StudentList = ({studentList}) => {
   return (
     <ul>
       {
-        studentList.map(student => <li key={student.id}> {student.firstName}</li>)
+        studentList.map(student => <li key={student.id}> {student.firstName} {student.lastName}</li>)
       }
     </ul>
   )

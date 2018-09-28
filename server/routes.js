@@ -36,6 +36,15 @@ router.get('/student/:id', (req, res, next) => {
   Student.findById(req.params.id)
   .then(student => res.send(student))
   .catch(next);
+});
+
+// deleting single School and single student
+
+router.delete('/school/:id', (req, res, next) => {
+  School.findById(req.params.id)
+  .then(student => student.destroy())
+  .then(() => res.sendStatus(204)) //standard paractice to send a response after deleting
+  .catch(next);
 })
 
 module.exports = router;

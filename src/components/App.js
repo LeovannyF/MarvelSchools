@@ -3,6 +3,7 @@ import store, {loadSchools, loadStudents} from '../store';
 import {Provider, connect} from 'react-redux';
 import SchoolList from './SchoolList';
 import StudentList from './StudentList';
+import DetailedSchool from './DetailedSchool';
 import {HashRouter, Route, Link} from 'react-router-dom';
 
 
@@ -13,19 +14,19 @@ class App extends Component {
   }
 
   render() {
-    console.log('Hello', this.props.schoolList.length)
     return (
       <HashRouter>
           <div id='container'>
             <div id='nav-bar'>
               <button> <Link to ='/'> Home </Link></button>
-              <button> <Link to='/schools'> Schools {this.props.schoolList.length} </Link> </button>
-              <button> <Link to='/students'> Students {this.props.studentList.length} </Link> </button>
+              <button> <Link to='/schools'> Schools ({this.props.schoolList.length}) </Link> </button>
+              <button> <Link to='/students'> Students ({this.props.studentList.length}) </Link> </button>
             </div>
 
             <div id='nav-helper'>
-              <Route path='/schools' component = {SchoolList}/>
+              <Route exact path='/schools' component = {SchoolList}/>
               <Route path='/students' component = {StudentList}/>
+              <Route path='/schools/:id' component = {DetailedSchool}/>
               <Route exact path = '/'/>
             </div>
           </div>
@@ -35,7 +36,7 @@ class App extends Component {
 }
 
 const mapStateToProps = ({schoolList, studentList}) => {
-  return{
+  return {
     schoolList,
     studentList
   }
