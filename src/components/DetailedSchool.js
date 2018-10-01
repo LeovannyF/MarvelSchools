@@ -1,10 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {deleteSchool} from'../store';
+import {deleteSchool, deleteStudent} from'../store';
 import {Link} from 'react-router-dom';
 
 
-const DetailedSchool = ({schoolList, match, deleteSchool}) => {
+const DetailedSchool = ({schoolList, match, deleteSchool, deleteStudent}) => {
 
   let single = schoolList.find(school => {
     return school.id === +match.params.id
@@ -18,6 +18,13 @@ const DetailedSchool = ({schoolList, match, deleteSchool}) => {
         {single.address} <br />
         {single.moto}
         </div>
+        <br />
+
+        <div id='studentView'>
+        {single.students.map(student => {
+          return  <li key= {student.id}> {student.firstName}  <button onClick = {() => deleteStudent(student)}>  <Link to='/schools'> x </Link> </button> </li>
+        })}
+        </div>
 
         <div id ='delete'>
           <br />
@@ -27,15 +34,17 @@ const DetailedSchool = ({schoolList, match, deleteSchool}) => {
   )
 }
 
-const mapStateToProps = ({schoolList}) => {
+const mapStateToProps = ({schoolList, studentList}) => {
   return {
-    schoolList
+    schoolList,
+    studentList
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    deleteSchool: (school) => dispatch(deleteSchool(school))
+    deleteSchool: (school) => dispatch(deleteSchool(school)),
+    deleteStudent: (student) => dispatch(deleteStudent(student))
   }
 }
 

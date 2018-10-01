@@ -5,11 +5,13 @@ import SingleSchool from './SingleSchool';
 
 const SchoolList = ({schoolList}) => {
   return (
+    <div>
       <ul>
         {
           schoolList.map(school => <SingleSchool key={school.id} school={school}/>)
         }
       </ul>
+    </div>
   );
 }
 

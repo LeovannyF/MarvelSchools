@@ -42,9 +42,36 @@ router.get('/student/:id', (req, res, next) => {
 
 router.delete('/school/:id', (req, res, next) => {
   School.findById(req.params.id)
-  .then(student => student.destroy())
+  .then(school => school.destroy())
   .then(() => res.sendStatus(204)) //standard paractice to send a response after deleting
   .catch(next);
+})
+
+router.delete('/student/:id', (req, res, next) => {
+  Student.findById(req.params.id)
+  .then(student => student.destroy())
+  .then(() => res.sendStatus(204))
+  .catch(next);
+})
+
+//posting, creating students and schools
+
+router.post('/student', (req, res, next) => {
+  Student.create(
+    {firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    gpa: req.body.gpa
+  });
+})
+
+router.post('/school', (req, res, next) => {
+  School.create (
+    {
+      name: req.body.name,
+      address: req.body.address,
+      moto: req.body.moto
+    }
+  )
 })
 
 module.exports = router;

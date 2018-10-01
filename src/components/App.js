@@ -3,7 +3,9 @@ import store, {loadSchools, loadStudents} from '../store';
 import {Provider, connect} from 'react-redux';
 import SchoolList from './SchoolList';
 import StudentList from './StudentList';
+import StudentForm from './StudentForm';
 import DetailedSchool from './DetailedSchool';
+import DetailedStudent from './DetailedStudent';
 import {HashRouter, Route, Link} from 'react-router-dom';
 
 
@@ -24,9 +26,11 @@ class App extends Component {
             </div>
 
             <div id='nav-helper'>
-              <Route exact path='/schools' component = {SchoolList}/>
-              <Route path='/students' component = {StudentList}/>
-              <Route path='/schools/:id' component = {DetailedSchool}/>
+              <Route exact path ='/schools' component = {SchoolList}/>
+              <Route exact path ='/students' component = {StudentList}/>
+              <Route exact path ='/schools/:id' component = {DetailedSchool}/>
+              <Route exact path = '/students/:id' component = {DetailedStudent}/>
+              <Route exact path = '/createStudent' component = {StudentForm}/>
               <Route exact path = '/'/>
             </div>
           </div>

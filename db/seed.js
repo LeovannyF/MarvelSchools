@@ -23,14 +23,8 @@ const studentData = [
     firstName: 'Captian',
     lastName: 'America',
     gpa: 3.6
-  },
-  {
-    firstName: 'Peter',
-    lastName: 'Parker',
-    gpa: 4.0
   }
 ]
-
 
 
 const schoolData = [
