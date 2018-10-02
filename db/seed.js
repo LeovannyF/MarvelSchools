@@ -28,6 +28,7 @@ const studentData = [
 
 
 
+
 const schoolData = [
   {
     name:'Bronx School',

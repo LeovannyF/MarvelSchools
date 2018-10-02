@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {createStudent} from '../store'
+import {createStudent} from '../store';
 
 class StudentForm extends Component {
   constructor () {
@@ -42,12 +42,11 @@ class StudentForm extends Component {
     const {createStudent} = this.props;
 
     event.preventDefault();
-    console.log('I AM THE CREATE STUDENT ', this.state)
     createStudent(this.state);
     this.setState({
-      firstName: '',
-      lastName: '',
-      gpa: 0
+      firstName:'',
+      lastName:'',
+      gpa:0
     });
   }
 

@@ -57,8 +57,8 @@ router.delete('/student/:id', (req, res, next) => {
 //posting, creating students and schools
 
 router.post('/student', (req, res, next) => {
-  console.log(' WE ARE THE POST',req.body);
   let newStudent = req.body;
+  
   Student.create(newStudent)
   .then(newStudent => {
     res.json(newStudent)
@@ -66,12 +66,12 @@ router.post('/student', (req, res, next) => {
 })
 
 router.post('/school', (req, res, next) => {
-  let newStudent = req.body
-  School.create ({
-      name: req.body.name,
-      address: req.body.address,
-      moto: req.body.moto
-    }).then()
+  let newSchool = req.body;
+
+  School.create(newSchool)
+  .then( newSchool => {
+    res.json(newSchool)
+  });
 })
 
 module.exports = router;
