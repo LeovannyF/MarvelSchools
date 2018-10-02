@@ -9,6 +9,9 @@ const DetailedStudent = ({studentList, match, deleteStudent}) => {
     return student.id  === +match.params.id
   });
 
+  if(!single){
+    return <h1> Loading... </h1>
+  }
 
   return (
     <div>

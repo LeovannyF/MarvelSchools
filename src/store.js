@@ -9,6 +9,7 @@ const LOAD_SCHOOLS = "LOAD_SCHOOLS";
 const LOAD_STUDENTS = "LOAD_STUDENTS";
 const DELETE_SCHOOL = "DELETE_SCHOOL";
 const DELETE_STUDENT = "DELETE_STUDENT";
+const CREATE_STUDENT = "CREATE_STUDENT";
 
 //action creators
 
@@ -40,6 +41,12 @@ const _deleteStudent = (student) => {
   }
 }
 
+const _createStudent = (student) => {
+  return {
+    student,
+    type: CREATE_STUDENT
+  }
+}
 
 //thunk creators
 const loadSchools = () => {
@@ -72,6 +79,14 @@ const deleteStudent = (student) => {
   }
 }
 
+const createStudent = (student) => {
+  return (dispatch) => {
+    axios.post('/api/student', student)
+    .then(response => response.data)
+    .then(newStudent => dispatch(_createStudent(newStudent)))
+  }
+}
+
 
 //store reducers
 
@@ -98,6 +113,10 @@ const StudentReducer = (state = [], action) => {
     state = state.filter(student => student.id !== action.student.id)
     break;
 
+    case CREATE_STUDENT:
+    state = [...state, action.student]
+    break;
+    
   }
   return state
 }
@@ -116,4 +135,4 @@ const reducer = combineReducers({
 const store = createStore(reducer, applyMiddleware(logger, thunk));
 
 export default store;
-export {loadSchools, loadStudents, deleteSchool, deleteStudent}
+export {loadSchools, loadStudents, deleteSchool, deleteStudent, createStudent}

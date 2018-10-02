@@ -10,6 +10,10 @@ const DetailedSchool = ({schoolList, match, deleteSchool, deleteStudent}) => {
     return school.id === +match.params.id
   });
 
+  if(!single) {  // gives the information time to load 
+    return <h1> Loading... </h1>
+  }
+
   return (
     <div>
         <div id='schoolView'>
@@ -28,7 +32,7 @@ const DetailedSchool = ({schoolList, match, deleteSchool, deleteStudent}) => {
 
         <div id ='delete'>
           <br />
-          <button onClick={()=> deleteSchool(single)}> <Link to='/schools'>Delete </Link> </button>
+          <button onClick={()=> deleteSchool(single)}> <Link to='/schools'> Delete </Link> </button>
         </div>
     </div>
   )
