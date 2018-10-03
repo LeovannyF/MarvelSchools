@@ -16,13 +16,14 @@ const DetailedStudent = ({studentList, match, deleteStudent}) => {
   return (
     <div>
       <div id='studentView'>
-        {single.firstName}
-        {single.lastName}
-        {single.gpa}
+      {single.firstName} <br />
+      {single.lastName}  <br />
+      {single.gpa} <br />
       </div>
 
       <div id ='delete'>
         <button onClick = {() => deleteStudent(single)}> <Link to='/students'> Delete </Link> </button>
+        <button><Link to={`/editStudent/${single.id}`}> Edit </Link></button>
       </div>
     </div>
   )

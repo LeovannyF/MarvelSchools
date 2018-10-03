@@ -58,7 +58,7 @@ router.delete('/student/:id', (req, res, next) => {
 
 router.post('/student', (req, res, next) => {
   let newStudent = req.body;
-  
+
   Student.create(newStudent)
   .then(newStudent => {
     res.json(newStudent)
@@ -72,6 +72,34 @@ router.post('/school', (req, res, next) => {
   .then( newSchool => {
     res.json(newSchool)
   });
+})
+
+//updating, Schools and Students
+
+router.put('/student/:id', (req, res, next) =>{
+  let student = req.body
+  console.log('I am Params', req.params.id)
+
+  Student.update(student,
+    {
+      where: { id: req.params.id},
+      returning: true,
+      plain: true
+    })
+    .then(arr => {
+      console.log('I am the student',arr[1])
+      res.json(arr[1])})
+    .catch(next)
+})
+
+router.put('/school/:id', (req, res, next) => {
+  let school = req.body;
+
+  School.update(school,
+    {
+      where: { id: req.params.id }
+    })
+    .then(school => {res.json(school)})
 })
 
 module.exports = router;
