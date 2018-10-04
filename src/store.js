@@ -11,7 +11,8 @@ const DELETE_SCHOOL = "DELETE_SCHOOL";
 const DELETE_STUDENT = "DELETE_STUDENT";
 const CREATE_STUDENT = "CREATE_STUDENT";
 const CREATE_SCHOOL = "CREATE_SCHOOL";
-const EDIT_STUDENT="EDIT_STUDENT";
+const EDIT_STUDENT= "EDIT_STUDENT";
+const EDIT_SCHOOL = "EDIT_SCHOOL";
 
 //action creators
 
@@ -64,6 +65,13 @@ const _editStudent =(student) => {
   }
 }
 
+const _editSchool = (school) => {
+  return {
+    school,
+    type: EDIT_SCHOOL
+  }
+}
+
 //thunk creators
 const loadSchools = () => {
   return(dispatch) => {
@@ -112,11 +120,18 @@ const createSchool = (school) => {
 }
 
 const editStudent = (student) => {
-  console.log(student);
   return(dispatch) => {
     axios.put(`/api/student/${student.id}`, student)
     .then(response => response.data)
     .then(updatedStu => dispatch(_editStudent(updatedStu)))
+  }
+}
+
+const editSchool = (school) => {
+  return(dispatch) => {
+    axios.put(`/api/school/${school.id}`, school)
+    .then(response => response.data)
+    .then(updateSchool => dispatch(_editSchool(updateSchool)))
   }
 }
 
@@ -135,6 +150,17 @@ const SchoolReducer = (state = [], action) => {
 
     case CREATE_SCHOOL:
     state = [...state, action.school]
+    break;
+
+    case EDIT_SCHOOL:
+    return state.map((school) => {
+      if(school.id === action.school.id){
+        return action.school;
+      } else {
+        return school;
+      }
+    })
+    break;
   }
   return state
 }
@@ -155,11 +181,13 @@ const StudentReducer = (state = [], action) => {
 
     case EDIT_STUDENT:
      return state.map((student) => {
-
       if(student.id === action.student.id){
-        student = action.student;
+        return action.student;
+      } else {
+        return student;
       }
     })
+    break;
   }
   return state
 }
@@ -178,4 +206,4 @@ const reducer = combineReducers({
 const store = createStore(reducer, applyMiddleware(logger, thunk));
 
 export default store;
-export {loadSchools, loadStudents, deleteSchool, deleteStudent, createStudent, createSchool, editStudent}
+export {loadSchools, loadStudents, deleteSchool, deleteStudent, createStudent, createSchool, editStudent, editSchool}

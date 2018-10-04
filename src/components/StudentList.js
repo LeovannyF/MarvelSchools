@@ -4,7 +4,6 @@ import SingleStudent from './SingleStudent';
 import {Link} from 'react-router-dom';
 
 
-
 const StudentList = ({studentList}) => {
   return (
     <div>
@@ -19,7 +18,7 @@ const StudentList = ({studentList}) => {
         <button> <Link to='/createStudent'> New Student </Link></button>
       </div>
   </div>
-  )
+);
 }
 
 const mapStateToProps = ({studentList}) => {

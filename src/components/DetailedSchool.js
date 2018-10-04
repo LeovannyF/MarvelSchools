@@ -10,7 +10,7 @@ const DetailedSchool = ({schoolList, match, deleteSchool, deleteStudent}) => {
     return school.id === +match.params.id
   });
 
-  if(!single) {  // gives the information time to load 
+  if(!single) {  // gives the information time to load
     return <h1> Loading... </h1>
   }
 
@@ -24,15 +24,16 @@ const DetailedSchool = ({schoolList, match, deleteSchool, deleteStudent}) => {
         </div>
         <br />
 
-        <div id='studentView'>
-        {single.students.map(student => {
-          return  <li key= {student.id}> {student.firstName}  <button onClick = {() => deleteStudent(student)}>  <Link to='/schools'> x </Link> </button> </li>
-        })}
-        </div>
+          <div id='studentView'>
+          {single.students.map(student => {
+            return  <li key= {student.id}> {student.firstName}  <button onClick = {() => deleteStudent(student)}>  <Link to='/schools'> x </Link> </button> </li>
+          })}
+          </div>
 
         <div id ='delete'>
           <br />
           <button onClick={()=> deleteSchool(single)}> <Link to='/schools'> Delete </Link> </button>
+          <button><Link to={`/editSchool/${single.id}`}> Edit </Link></button>
         </div>
     </div>
   )

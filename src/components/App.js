@@ -6,6 +6,7 @@ import StudentList from './StudentList';
 import StudentForm from './StudentForm';
 import SchoolFrom from './SchoolForm';
 import EditStudent from './EditStudent';
+import EditSchool from './EditSchool'
 import DetailedSchool from './DetailedSchool';
 import DetailedStudent from './DetailedStudent';
 import {HashRouter, Route, Link} from 'react-router-dom';
@@ -35,6 +36,7 @@ class App extends Component {
               <Route exact path = '/createStudent' component = {StudentForm}/>
               <Route exact path ='/createSchool' component = {SchoolFrom}/>
               <Route exact path = '/editStudent/:id' component = {EditStudent}/>
+              <Route exact path = '/editSchool/:id' component = {EditSchool}/>
               <Route exact path = '/'/>
             </div>
           </div>

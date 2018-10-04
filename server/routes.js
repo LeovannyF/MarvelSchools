@@ -78,8 +78,7 @@ router.post('/school', (req, res, next) => {
 
 router.put('/student/:id', (req, res, next) =>{
   let student = req.body
-  console.log('I am Params', req.params.id)
-
+  
   Student.update(student,
     {
       where: { id: req.params.id},
@@ -87,19 +86,22 @@ router.put('/student/:id', (req, res, next) =>{
       plain: true
     })
     .then(arr => {
-      console.log('I am the student',arr[1])
       res.json(arr[1])})
     .catch(next)
 })
 
 router.put('/school/:id', (req, res, next) => {
-  let school = req.body;
+  let school = req.body
 
   School.update(school,
     {
-      where: { id: req.params.id }
+      where: { id: req.params.id },
+      returning: true,
+      plain: true
     })
-    .then(school => {res.json(school)})
+    .then(arr => {
+      res.json(arr[1])})
+    .catch(next)
 })
 
 module.exports = router;

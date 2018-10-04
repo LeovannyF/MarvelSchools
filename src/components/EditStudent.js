@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {editStudent} from '../store';
 
-
-
 class EditStudent extends Component {
   constructor({student}) {
     super()
@@ -65,7 +63,6 @@ class EditStudent extends Component {
 }
 
 const mapStateToProps = (state, {match, history}) => {
-  console.log('I am student in State to Props',state.studentList)
   const student = state.studentList.find(student => student.id === match.params.id*1)
   return{
     student
