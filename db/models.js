@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const db = new Sequelize(process.env.DATABASE || 'postgres://localhost:5432/MarvelSchools', {logging:false});
+const db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost:5432/MarvelSchools', {logging:false});
 const {studentData, schoolData} = require('./seed');
 
 const Student = db.define('student', {
