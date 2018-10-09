@@ -57,8 +57,14 @@ class StudentForm extends Component {
   }
 }
 
+const mapStateToProps = ({schoolList}) => {
+  return {
+    schoolList
+  }
+}
+
 const mapDispatchToProps = (dispatch) => ({
   createStudent: (student) => dispatch(createStudent(student))
 })
 
-export default connect(null, mapDispatchToProps)(StudentForm)
+export default connect(mapStateToProps, mapDispatchToProps)(StudentForm)
